@@ -5,6 +5,7 @@ namespace App\Models;
 
 use Filament\Panel;
 use App\Enums\PanelTypeEnum;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
@@ -61,8 +62,8 @@ class User extends Authenticatable implements FilamentUser
         return false;
     }
 
-    public function customer(): BelongsTo
+    public function customer(): HasOne
     {
-        return $this->belongsTo(Customer::class);
+        return $this->hasOne(Customer::class);
     }
 }
